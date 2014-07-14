@@ -1,0 +1,3 @@
+ardupilot_path='~/jdrusso/arsenl/arsenl-ardupilot/'
+mavproxy_path='~/jdrusso/arsenl/mavproxy/'
+mavlink_path='~/jdrusso/arsenl/mavlink/'

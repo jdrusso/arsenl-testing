@@ -1,0 +1,4 @@
+To use this, the following must be added in $PYTHONPATH:
+
+[ardupilot-directory]/Tools/autotest
+[ardupilot-directory]/Tools/autotest/pysim
