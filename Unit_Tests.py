@@ -51,8 +51,8 @@ class Unit_Tests(
         util.run_cmd('mkfifo jsb_pipe')
 
         #Comment these out to enable logging
-        util.run_cmd('xterm -e tail -f jsb_pipe &')
-        util.run_cmd('xterm -e tail -f mavproxy_pipe &')
+        #util.run_cmd('xterm -e tail -f jsb_pipe &')
+        #util.run_cmd('xterm -e tail -f mavproxy_pipe &')
 
         util.run_cmd('echo "INITIALIZED MAVPROXY PIPE" > mavproxy_pipe &')
         util.run_cmd('echo "INITIALIZED JSBSIM PIPE" > jsb_pipe &')

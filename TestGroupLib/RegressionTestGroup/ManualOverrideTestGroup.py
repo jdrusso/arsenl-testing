@@ -2,6 +2,7 @@ import pexpect, os, sys
 from pymavlink import mavutil
 import util, arduplane
 from common import *
+import testutils
 
 class ManualOverrideTests():
     def test_manual_overrides(self):
@@ -17,7 +18,7 @@ class ManualOverrideTests():
         testList = [self.test_battery_current_failsafe,
         self.test_battery_voltage_failsafe, self.test_gps_failsafe,
         #self.test_gps_failsafe,
-        self.test_fence_breach_failsafe, self.test_double_failsafe,
+        self.test_fence_breach_failsafe,
         self.test_heartbeat_failsafe]
 
         testResults = {}
@@ -34,11 +35,10 @@ class ManualOverrideTests():
                 self.setup(altCheck=False)
                 print("GOING UP")
                 self.mavproxy.send('wp set 3\n')
-                self.wait_altitude(890, 950, timeout=900)
+                testutils.wait_altitude(self, 890, 950, timeout=45)
                 print("NOW UP")
                 self.mavproxy.send('mode MANUAL\n')
-                self.check_mode('MANUAL')
-                wait_seconds(self.DELAY)
+                testutils.check_mode(self, 'MANUAL')
                 test(False)
                 self.teardown()
                 print("Test finished.")
