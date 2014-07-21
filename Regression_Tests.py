@@ -194,7 +194,7 @@ class Regression_Tests(GeneralFailsafeTestGroup.GeneralFailsafeTests,
 
         PROCNAME = ["JSBSim", "mavproxy.py"]
         for proc in psutil.process_iter():
-            if proc.name() in PROCNAME:
+            if proc.name in PROCNAME:
                 proc.kill()
 
     @classmethod
