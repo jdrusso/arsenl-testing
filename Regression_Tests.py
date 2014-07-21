@@ -199,8 +199,8 @@ class Regression_Tests(GeneralFailsafeTestGroup.GeneralFailsafeTests,
                 proc.kill()
 
         #And just in case...
-        subprocess.call('xdotool search --name "Map" key alt+f4', shell=True)
-        subprocess.call('xdotool search --name "Console" key alt+f4', shell=True)
+        subprocess.call('xdotool windowkill $(xdotool search --name "Map")', shell=True)
+        subprocess.call('xdotool windowkill $(xdotool search --name "Console")', shell=True)
 
     @classmethod
     def signal_handler(self, signal, frame):
