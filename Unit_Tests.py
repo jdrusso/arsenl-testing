@@ -9,6 +9,7 @@ import pexpect, os, sys, signal, psutil
 from pymavlink import mavutil
 import util, arduplane
 from common import *
+import subprocess
 
 
 
@@ -168,7 +169,7 @@ class Unit_Tests(
         for proc in psutil.process_iter():
             if proc.name in PROCNAME:
                 proc.kill()
-                
+
         subprocess.call('xdotool windowkill $(xdotool search --name "Map")', shell=True)
         subprocess.call('xdotool windowkill $(xdotool search --name "Console")', shell=True)
 

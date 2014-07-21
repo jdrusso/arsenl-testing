@@ -5,6 +5,7 @@ from nose.plugins.skip import Skip, SkipTest
 import time
 import util, arduplane
 from common import *
+import subprocess
 
 from RegressionTestGroup.ArduPlaneTestGroup import GeneralFailsafeTestGroup
 from RegressionTestGroup.ArduPlaneTestGroup import GPSFailsafeTestGroup
