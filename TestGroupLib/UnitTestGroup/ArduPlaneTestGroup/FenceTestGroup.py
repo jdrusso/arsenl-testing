@@ -63,7 +63,7 @@ class FenceTest():
 
 		self.mavproxy.send('fence load %stestFence\n' % self.resource_path)
 		wait_seconds(self.DELAY)
-		window_id = int(subprocess.check_output('xdotool search --name Map', shell=True))
+		window_id = int(subprocess.check_output('xdotool search --name "Map"', shell=True))
 		regex = re.compile('X=(\d*)\s*Y=(\d*)\s*WIDTH=(\d*)\s*HEIGHT=(\d*)\s*')
 
 		results = regex.search(subprocess.check_output('xdotool getwindowgeometry --shell %d'\
@@ -77,7 +77,7 @@ class FenceTest():
 		#This position is arbitrary
 		mouse_click_x = x_offset + (width//3)
 		mouse_click_y = y_offset + (height//3)
-		prin
+		
 		#Bring the Map window to the front && Click
 		subprocess.call('xdotool windowactivate %d && xdotool mousemove %d %d click 1'\
 		 	% (window_id, mouse_click_x, mouse_click_y), shell=True)
