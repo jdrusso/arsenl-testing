@@ -61,16 +61,16 @@ class FenceTest():
 	def test_fence_move(self):
 		#Attempts to move a geofence point
 
+		print("Attempting to move fence")
 		self.mavproxy.send('fence load %stestFence\n' % resource_path)
 		wait_seconds(self.DELAY)
-
 		window_id = int(subprocess.check_output('xdotool search --name Map', shell=True))
-
+		print("Window ID found, getting geometry")
 		regex = re.compile('X=(\d*)\s*Y=(\d*)\s*WIDTH=(\d*)\s*HEIGHT=(\d*)\s*')
 
 		results = regex.search(subprocess.check_output('xdotool getwindowgeometry --shell %d'\
 			% window_id, shell=True)).groups()
-
+		print("Geometry gotten")
 		x_offset = int(results[0])
 		y_offset = int(results[1])
 		width    = int(results[2])
@@ -80,15 +80,18 @@ class FenceTest():
 		#This position is arbitrary
 		mouse_click_x = x_offset + (width//3)
 		mouse_click_y = y_offset + (height//3)
-
+		print("About to click")
 		#Bring the Map window to the front && Click
 		subprocess.call('xdotool windowactivate %d && xdotool mousemove %d %d click 1'\
 		 	% (window_id, mouse_click_x, mouse_click_y), shell=True)
-
+		print("clicked")
 		wait_seconds(self.DELAY)
 		self.mavproxy.send('fence move 2\n')
+		print("moved")
 		assert {0:True, 1:False}[self.mavproxy.expect('Moved fence point 2', timeout=self.TIMEOUT)]
+		print("asserted")
 		wait_seconds(self.DELAY)
+		print("delayed")
 		self.mavproxy.send('fence list\n')
 
 	def test_fence_remove(self):
@@ -101,8 +104,6 @@ class FenceTest():
 		self.mavproxy.send('fence remove 5\n')
 		wait_seconds(self.DELAY)
 		self.mavproxy.expect('fence removed', timeout=self.TIMEOUT), 'Fence point could not be removed'
-		pass
-
 	def test_fence_enable(self):
 		#Attempts to enable the geofence
 
