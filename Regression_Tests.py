@@ -191,11 +191,16 @@ class Regression_Tests(GeneralFailsafeTestGroup.GeneralFailsafeTests,
         util.pexpect_close(cls.mavproxy)
         util.pexpect_close(cls.sil)
         util.pexpect_close(cls.runsim)
+        util.pexpect_close_all()
 
         PROCNAME = ["JSBSim", "mavproxy.py"]
         for proc in psutil.process_iter():
             if proc.name in PROCNAME:
                 proc.kill()
+
+        #And just in case...
+        subprocess.call('xdotool search --name "Map" key alt+f4', shell=True)
+        subprocess.call('xdotool search --name "Console" key alt+f4', shell=True)
 
     @classmethod
     def signal_handler(self, signal, frame):

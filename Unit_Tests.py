@@ -168,6 +168,9 @@ class Unit_Tests(
         for proc in psutil.process_iter():
             if proc.name in PROCNAME:
                 proc.kill()
+                
+        subprocess.call('xdotool search --name "Map" key alt+f4', shell=True)
+        subprocess.call('xdotool search --name "Console" key alt+f4', shell=True)
 
         #raise SystemExit
 
