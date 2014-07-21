@@ -61,7 +61,7 @@ class FenceTest():
 	def test_fence_move(self):
 		#Attempts to move a geofence point
 
-		self.mavproxy.send('fence load %stestFence\n' % self.sudoresource_path)
+		self.mavproxy.send('fence load %stestFence\n' % self.resource_path)
 		wait_seconds(self.DELAY)
 		window_id = int(subprocess.check_output('xdotool search --name Map', shell=True))
 		regex = re.compile('X=(\d*)\s*Y=(\d*)\s*WIDTH=(\d*)\s*HEIGHT=(\d*)\s*')
