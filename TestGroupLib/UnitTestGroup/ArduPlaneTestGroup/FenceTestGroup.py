@@ -61,7 +61,11 @@ class FenceTest():
 	def test_fence_move(self):
 		#Attempts to move a geofence point
 
+		self.mavproxy.send('fence list\n')
+		wait_seconds(self.DELAY)
 		self.mavproxy.send('fence load %stestFence\n' % self.resource_path)
+		wait_seconds(self.DELAY)
+		self.mavproxy.send('fence list\n')
 		wait_seconds(self.DELAY)
 		window_id = int(subprocess.check_output('xdotool search --name "Map"', shell=True))
 		regex = re.compile('X=(\d*)\s*Y=(\d*)\s*WIDTH=(\d*)\s*HEIGHT=(\d*)\s*')
@@ -82,6 +86,8 @@ class FenceTest():
 		subprocess.call('xdotool windowactivate %d && xdotool mousemove %d %d click 1'\
 		 	% (window_id, mouse_click_x, mouse_click_y), shell=True)
 
+		wait_seconds(self.DELAY)
+		self.mavproxy.send('fence list\n')
 		wait_seconds(self.DELAY)
 		self.mavproxy.send('fence move 2\n')
 
