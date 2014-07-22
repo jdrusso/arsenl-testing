@@ -31,6 +31,8 @@ class GeneralFailsafeTests():
     #TODO: Can't run both battery failsafe tests without a reset.
 
     def test_battery_voltage_failsafe(self, checkGPS=True):
+    
+        assert True
 
         oldVoltageValue = testutils.get_old_value(self, 'FS_BATT_VOLTAGE')
 
