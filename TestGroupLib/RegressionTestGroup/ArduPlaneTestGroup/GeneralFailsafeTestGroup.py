@@ -34,17 +34,17 @@ class GeneralFailsafeTests():
     
         assert True
 
-        oldVoltageValue = testutils.get_old_value(self, 'FS_BATT_VOLTAGE')
+       # oldVoltageValue = testutils.get_old_value(self, 'FS_BATT_VOLTAGE')
 
-        wait_seconds(self.DELAY)
-        self.mavproxy.send('param set FS_BATT_VOLTAGE 123456\n')
-        #Should trigger after 5 seconds, but seems to need longer
-        wait_seconds(10)
-        assert testutils.check_mode(self, 'RTL', delay=1), "Did not enter RTL"
-        print("RTL Entered")
-        if checkGPS:
-            assert testutils.check_GPS(self), "GPS Failsafe test failed."
-        print("GPS Passed")
+        #wait_seconds(self.DELAY)
+        #self.mavproxy.send('param set FS_BATT_VOLTAGE 123456\n')
+        ##Should trigger after 5 seconds, but seems to need longer
+        #wait_seconds(10)
+        #assert testutils.check_mode(self, 'RTL', delay=1), "Did not enter RTL"
+        #print("RTL Entered")
+        #if checkGPS:
+        #    assert testutils.check_GPS(self), "GPS Failsafe test failed."
+        #print("GPS Passed")
 
     def test_fence_breach_failsafe(self, checkGPS=True):
         wait_seconds(self.DELAY)
