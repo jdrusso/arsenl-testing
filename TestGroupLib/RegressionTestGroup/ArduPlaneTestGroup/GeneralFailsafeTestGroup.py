@@ -4,6 +4,7 @@ import util, arduplane
 from common import *
 import testutils
 import testutils
+from nose.plugins.skip import Skip, SkipTest
 
 class GeneralFailsafeTests():
 
@@ -32,7 +33,7 @@ class GeneralFailsafeTests():
 
     def test_battery_voltage_failsafe(self, checkGPS=True):
     
-        assert True
+        raise SkipTest
 
        # oldVoltageValue = testutils.get_old_value(self, 'FS_BATT_VOLTAGE')
 
