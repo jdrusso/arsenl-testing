@@ -15,8 +15,9 @@ class ManualOverrideTests():
         self.mavproxy.send('wp set 3\n')
         wait_seconds(self.DELAY)
 
-        testList = [self.test_battery_current_failsafe,
-        self.test_battery_voltage_failsafe, self.test_gps_failsafe,
+        testList = [#self.test_battery_current_failsafe,
+        self.test_battery_voltage_failsafe,
+        self.test_gps_failsafe,
         #self.test_gps_failsafe,
         self.test_fence_breach_failsafe,
         self.test_heartbeat_failsafe]
