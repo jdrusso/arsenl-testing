@@ -4,6 +4,7 @@ from nose.tools import *
 import subprocess
 import util, arduplane
 from common import *
+from nose.plugins.attrib import attr
 
 #TODO: Find a way to test 'wp move'. Uses map clicks
 class WaypointTest():
@@ -58,30 +59,6 @@ class WaypointTest():
 		assert (self.mav.recv_match(type='MISSION_COUNT', blocking=True, \
     		condition='MISSION_COUNT.count == 8', timeout=self.TIMEOUT) != None)
 		assert (self.mav.field('MISSION_COUNT', 'count') == 8)
-
-	# def test_waypoints_clear(self):
-	# 	#attempt to clear the mission
-
-	# 	wait_seconds(self.DELAY)
-
-	# 	self.mavproxy.send('wp clear\n')
-
-	# 	wait_seconds(self.DELAY)
-	# 	self.mavproxy.send('wp list\n')
-	# 	wait_seconds(self.DELAY)
-
-	# 	self.mavproxy.send('status\n')
-
-	# 	#re.compile("MISSION_COUNT {(.*)count : (.*)}\n").search(string).group(2)
-	# 	#self.mavproxy.expect("MISSION_COUNT {(.*)count : 0}", timeout=self.TIMEOUT)
-	# 	self.mavproxy.expect("re-requesting WP 0", timeout=self.TIMEOUT)
-
-	# 	#self.mav.recv_match(type='MISSION_COUNT', blocking=True, \
- #    	#	condition='MISSION_COUNT.count == 0', timeout=self.TIMEOUT)
-
-	# 	#assert (self.mav.field('MISSION_COUNT', 'count') == 0)
-
-	# 	wait_seconds(self.DELAY)
 
 	@with_setup(waypoint_setup, waypoint_teardown)
 	def test_waypoints_save(self):
@@ -177,6 +154,7 @@ class WaypointTest():
 		wait_seconds(self.DELAY)
 		assert {0:True, 1:False}[self.mavproxy.expect('waypoint 2', timeout=self.TIMEOUT)]
 
+	@attr('gui')
 	def test_waypoints_move(self):
 		#Attempts to move a waypoint.
 

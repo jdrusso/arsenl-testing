@@ -3,6 +3,7 @@ from pymavlink import mavutil
 import subprocess
 import util, arduplane
 from common import *
+from nose.plugins.attrib import attr
 
 #TODO: Find a way to detect whether or not the plane is breaching
 class FenceTest():
@@ -58,6 +59,7 @@ class FenceTest():
 		assert {0:True, 1:False}[self.mavproxy.expect('Loaded \d geo-fence points', timeout=self.TIMEOUT)]
 		pass
 
+	@attr('gui')
 	def test_fence_move(self):
 		#Attempts to move a geofence point
 
@@ -107,6 +109,7 @@ class FenceTest():
 		self.mavproxy.send('fence remove 5\n')
 		wait_seconds(self.DELAY)
 		self.mavproxy.expect('fence removed', timeout=self.TIMEOUT), 'Fence point could not be removed'
+		
 	def test_fence_enable(self):
 		#Attempts to enable the geofence
 

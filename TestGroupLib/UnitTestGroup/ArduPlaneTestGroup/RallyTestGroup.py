@@ -4,6 +4,7 @@ from nose.tools import *
 import subprocess
 import util, arduplane
 from common import *
+from nose.plugins.attrib import attr
 
 class RallyTest():
 
@@ -20,7 +21,6 @@ class RallyTest():
 		wait_seconds(self.DELAY)
 		self.mavproxy.send('rally list\n')
 		wait_seconds(self.DELAY)
-
 
 	def rally_teardown(self):
 		pass
@@ -125,7 +125,7 @@ class RallyTest():
 		wait_seconds(self.DELAY)
 		assert {0:True, 1:False}[self.mavproxy.expect('RALLY_POINT {.*count : 1.*}', timeout=self.TIMEOUT)]
 
-
+	@attr('gui')
 	def test_rally_move(self):
 		#attempts to move a rally point
 
@@ -159,9 +159,7 @@ class RallyTest():
 		wait_seconds(self.DELAY)
 		self.mavproxy.send('rally list\n')
 
-
-		pass
-
+	@attr('gui')
 	def test_rally_add(self):
 		#attempts to add a rally point
 
