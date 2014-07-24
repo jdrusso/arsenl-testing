@@ -43,6 +43,8 @@ class ManualOverrideTests():
                     test()
                 else:
                     test(False)
+                wait_seconds(self.DELAY)
+                self.mavproxy.send('fence disable\n')
                 self.teardown()
                 print("Test finished.")
                 wait_seconds(self.DELAY)
@@ -54,9 +56,6 @@ class ManualOverrideTests():
                 print(e)
                 success = True
                 wait_seconds(self.DELAY)
-                if test.__name__ == 'test_fence_breach_failsafe':
-                    self.mavproxy.send('fence disable\n')
-                    wait_seconds(self.DELAY)
             else:
 
                 wait_seconds(self.DELAY)
