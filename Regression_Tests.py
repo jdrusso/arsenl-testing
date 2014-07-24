@@ -102,14 +102,14 @@ class Regression_Tests(GeneralFailsafeTestGroup.GeneralFailsafeTests,
         cmd = util.reltopdir("Tools/autotest/jsbsim/runsim.py")
         cmd += " --home=%s --wind=%s" % (HOME_LOCATION, WIND)
         #cls.runsim = pexpect.spawn(cmd, logfile=sys.stdout, timeout=10)
-        cls.runsim = pexpect.spawn(cmd, logfile=file('jsb_pipe', 'w+'), timeout=10)
+        cls.runsim = pexpect.spawn(cmd, logfile=file('jsb_pipe', 'w+', 0), timeout=10)
         cls.runsim.delaybeforesend = 0
         util.pexpect_autoclose(cls.runsim)
         cls.runsim.expect('Simulator ready to fly.')
         cls.sil = util.start_SIL('ArduPlane', valgrind=True)
         options += ' --map --console'
         cls.mavproxy = util.start_MAVProxy_SIL('ArduPlane', 
-            logfile=file('mavproxy_pipe', 'w+'), options=options)
+            logfile=file('mavproxy_pipe', 'w+', 0), options=options)
         
         #TODO: Make these easier to find
         cls.mavproxy.expect('Logging to (\S+)')

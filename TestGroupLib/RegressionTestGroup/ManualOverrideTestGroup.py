@@ -18,7 +18,6 @@ class ManualOverrideTests():
         testList = [self.test_battery_current_failsafe,
         #self.test_battery_voltage_failsafe,
         self.test_gps_failsafe,
-        #self.test_gps_failsafe,
         self.test_fence_breach_failsafe,
         self.test_heartbeat_failsafe]
 
@@ -40,7 +39,10 @@ class ManualOverrideTests():
                 print("NOW UP")
                 self.mavproxy.send('mode MANUAL\n')
                 testutils.check_mode(self, 'MANUAL')
-                test(False)
+                if test.__name__ == 'test_gps_failsafe':
+                    test()
+                else:
+                    test(False)
                 self.teardown()
                 print("Test finished.")
                 wait_seconds(self.DELAY)

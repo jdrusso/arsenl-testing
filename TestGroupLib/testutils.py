@@ -16,6 +16,8 @@ def check_GPS(self):
     wait_seconds(self.DELAY)
     assert {0:True, 1:False}[self.mavproxy.expect('chan3_raw : 1000', timeout=self.TIMEOUT)]
     wait_seconds(self.DELAY)
+    self.mavproxy.send('param set SIM_GPS_DISABLE 0\n')
+    wait_seconds(4)
     return True
 
 def get_old_value(self, paramName):
@@ -54,6 +56,11 @@ def wait_altitude(self, alt_min, alt_max, timeout=90):
     print("Waiting for an altitude between %u and %u" % (alt_min, alt_max))
     while time.time() < tstart + timeout:
 
+
+        self.mavproxy.send('mode AUTO\n')
+        wait_seconds(.1)
+        self.mavproxy.send('param set SIM_GPS_DISABLE 0\n')
+        wait_seconds(.1)
         alt = -1
         self.mavproxy.send('status VFR_HUD\n')
         wait_seconds(.1)
