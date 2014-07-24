@@ -10,13 +10,13 @@ class ModeTest():
     def check_enter_mode(self, mode):
         #Attempt to enter a mode
         self.mavproxy.send('mode %s\n' % mode)
-        wait_seconds(2)
-        wait_mode(self.mav, mode, timeout=self.TIMEOUT)
+        wait_seconds(1.5)
+        #wait_mode(self.mav, mode, timeout=self.TIMEOUT)
 
         if mode == 'INITIALISING':
             assert not (self.mav.flightmode == mode)
         else:
-            assert {0: True, 1: False}[self.mavproxy.expect('Mode %s' % mode, self.TIMEOUT)]
+            assert {0: True, 1: False}[self.mavproxy.expect('%s>' % mode, self.TIMEOUT)]
 
     def test_enter_modes(self):
 
