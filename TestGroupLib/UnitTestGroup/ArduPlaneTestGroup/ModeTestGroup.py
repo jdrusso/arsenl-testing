@@ -16,8 +16,7 @@ class ModeTest():
         if mode == 'INITIALISING':
             assert not (self.mav.flightmode == mode)
         else:
-            assert (self.mav.flightmode == mode)
-
+            assert {0: True, 1: False}[self.mavproxy.expect('Mode %s' % mode, self.TIMEOUT)]
 
     def test_enter_modes(self):
 
