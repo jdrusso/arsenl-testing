@@ -32,6 +32,8 @@ class Regression_Tests(GeneralFailsafeTestGroup.GeneralFailsafeTests,
         if altCheck:
             self.mav.recv_match(condition='VFR_HUD.alt>375', blocking=True)
         wait_seconds(self.DELAY)
+        self.mavproxy.send('fence disable\n')
+        wait_seconds(self.DELAY)
 
         print("Done setup.")
         pass
