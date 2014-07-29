@@ -126,7 +126,7 @@ class FenceTest():
 		wait_seconds(self.DELAY)
 		self.mavproxy.send('fence enable\n')
 		wait_seconds(self.DELAY)
-		assert {0:True, 1:True, 2:False}[self.mavproxy.expect('fence enabled', timeout=self.TIMEOUT)], \
+		assert {0:True, 1:False}[self.mavproxy.expect('Got MAVLink msg: COMMAND_ACK {command : 207, result : 0}', timeout=self.TIMEOUT)], \
 		'Fence could not be enabled.'
 
 		self.mavproxy.send('fence clear\n')
@@ -151,7 +151,7 @@ class FenceTest():
 		wait_seconds(self.DELAY)
 		self.mavproxy.send('fence disable\n')
 		wait_seconds(self.DELAY)
-		assert {0:True, 1:True, 2:False}[self.mavproxy.expect('fence disabled', timeout=self.TIMEOUT)], \
+		assert {0:True, 1:False}[self.mavproxy.expect('Got MAVLink msg: COMMAND_ACK {command : 207, result : 0}', timeout=self.TIMEOUT)], \
 		'Fence could not be disabled.'
 
 		self.mavproxy.send('fence clear\n')
