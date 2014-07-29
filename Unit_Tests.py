@@ -24,7 +24,7 @@ class Unit_Tests(
 
     def __init__(self):
         self.TIMEOUT=5
-        self.DELAY=1
+        self.DELAY=1.5
 
     def setup(self):
         #wait_seconds(self.DELAY)
