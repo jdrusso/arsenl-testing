@@ -39,12 +39,16 @@ class ManualOverrideTests():
                 print("NOW UP")
                 self.mavproxy.send('mode MANUAL\n')
                 testutils.check_mode(self, 'MANUAL')
+                wait_seconds(self.DELAY)
+                self.mavproxy.send('fence disable\n')
+                wait_seconds(self.DELAY)
                 if test.__name__ == 'test_gps_failsafe':
                     test()
                 else:
                     test(False)
                 wait_seconds(self.DELAY)
                 self.mavproxy.send('fence disable\n')
+                wait_seconds(self.DELAY)
                 self.teardown()
                 print("Test finished.")
                 wait_seconds(self.DELAY)
