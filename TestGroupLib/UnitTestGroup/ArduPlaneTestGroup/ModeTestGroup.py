@@ -5,7 +5,7 @@ from common import *
 
 class ModeTest():
 
-    modes = ['INITIALISING', 'AUTO', 'RTL', 'FBWA', 'FBWB', 'CIRCLE', 'MANUAL']
+    modes = ['AUTO', 'RTL', 'FBWA', 'FBWB', 'CIRCLE', 'MANUAL']
 
     def check_enter_mode(self, mode):
         #Attempt to enter a mode
