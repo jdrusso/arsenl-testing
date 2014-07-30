@@ -71,8 +71,8 @@ def wait_altitude(self, alt_min, alt_max, timeout=90):
         climb_rate =  alt - previous_alt
         previous_alt = alt
         print("Wait Altitude: Cur:%u, min_alt:%u, climb_rate: %u" % (alt, alt_min , climb_rate))
-        if abs(climb_rate) > 0:
-            tstart = time.time();
+        #if abs(climb_rate) > 0:
+        #    tstart = time.time();
         if alt >= alt_min:
             print("Altitude OK")
             return True
