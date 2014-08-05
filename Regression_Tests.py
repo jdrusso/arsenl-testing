@@ -203,6 +203,10 @@ class Regression_Tests(GeneralFailsafeTestGroup.GeneralFailsafeTests,
         #And just in case...
         subprocess.call('xdotool windowkill $(xdotool search --name "Map")', shell=True)
         subprocess.call('xdotool windowkill $(xdotool search --name "Console")', shell=True)
+        try:
+            sys.exit()
+        except SystemExit:
+            print 'Tests finished.'
 
     @classmethod
     def signal_handler(self, signal, frame):
