@@ -49,7 +49,7 @@ def check_mode(self, mode, TIME=5, delay=0):
 
 #TODO: This is a stopgap workaround until I can why mavutil.wait_altitude doesn't work.
 def wait_altitude(self, alt_min, alt_max, timeout=90):
-    waitDelay = .1
+    waitDelay = .2
     climb_rate = 0
     previous_alt = 0
     '''wait for a given altitude range'''
@@ -67,12 +67,10 @@ def wait_altitude(self, alt_min, alt_max, timeout=90):
         wait_seconds(waitDelay)
         self.mavproxy.expect('alt : \d*', timeout=self.TIMEOUT)
         alt = int(re.match("alt : (\d*)", self.mavproxy.after).group(1))
-        assert alt in range(1, 100000)
+        assert alt in range(1, 100000), "Invalid altitude!"
         climb_rate =  alt - previous_alt
         previous_alt = alt
         print("Wait Altitude: Cur:%u, min_alt:%u, climb_rate: %u" % (alt, alt_min , climb_rate))
-        #if abs(climb_rate) > 0:
-        #    tstart = time.time();
         if alt >= alt_min:
             print("Altitude OK")
             return True
