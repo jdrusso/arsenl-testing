@@ -6,5 +6,5 @@ import testutils
 
 class GPSFailsafeTests():
 
-    def test_gps_failsafe(self):
+    def test_gps_failsafe(self, checkGPS=True):
         assert testutils.check_GPS(self)
