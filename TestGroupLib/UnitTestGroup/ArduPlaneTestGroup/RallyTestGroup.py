@@ -53,7 +53,7 @@ class RallyTest():
 		wait_seconds(self.DELAY)
 		#Make sure they successfully loaded. This should time out
 		try:
-			self.mavproxy.expect('No rally points', timeout=3)
+			assert {0:False, 1:True}[self.mavproxy.expect('No rally points', timeout=3)]
 		except Exception:
 			assert True
 		wait_seconds(self.DELAY)

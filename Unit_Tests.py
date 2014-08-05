@@ -34,8 +34,7 @@ class Unit_Tests(
     def setup_class(cls):
         #start MAVLink, etc
 
-        cls.resource_path = os.path.join(os.path.dirname(\
-            os.path.dirname(os.path.dirname(ParamTestGroup.__file__))), 'Resources/')
+        cls.resource_path = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'TestGroupLib/'), 'Resources/')
 
         try:
             os.remove('eeprom.bin')

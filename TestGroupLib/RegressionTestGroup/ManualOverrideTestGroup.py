@@ -4,8 +4,15 @@ import util, arduplane
 from common import *
 import testutils
 
-class ManualOverrideTests():
-    def test_manual_overrides(self):
+class OverrideTests():
+
+    def test_overrides(self):
+        overrideModes = ['MANUAL, FBWA']
+
+        for mode in overrideModes:
+            yield self.check_overrides, mode
+
+    def check_overrides(self, startMode):
         #TODO: Why isnt setup running?
         self.mavproxy.send('set heartbeat 1\n')
         wait_seconds(self.DELAY)
@@ -37,8 +44,8 @@ class ManualOverrideTests():
                 self.mavproxy.send('wp set 3\n')
                 testutils.wait_altitude(self, 890, 950, timeout=45)
                 print("NOW UP")
-                self.mavproxy.send('mode MANUAL\n')
-                testutils.check_mode(self, 'MANUAL')
+                self.mavproxy.send('mode %s\n' % startMode)
+                testutils.check_mode(self, '%s' % startMode)
                 wait_seconds(self.DELAY)
                 self.mavproxy.send('fence disable\n')
                 wait_seconds(self.DELAY)

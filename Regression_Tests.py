@@ -9,11 +9,11 @@ import subprocess
 
 from RegressionTestGroup.ArduPlaneTestGroup import GeneralFailsafeTestGroup
 from RegressionTestGroup.ArduPlaneTestGroup import GPSFailsafeTestGroup
-from RegressionTestGroup import ManualOverrideTestGroup
+from RegressionTestGroup import OverrideTestGroup
 
 class Regression_Tests(GeneralFailsafeTestGroup.GeneralFailsafeTests,
                         GPSFailsafeTestGroup.GPSFailsafeTests,
-                        ManualOverrideTestGroup.ManualOverrideTests):
+                        OverrideTestGroup.OverrideTests):
 
     def __init__(self):
         self.TIMEOUT=5
@@ -54,8 +54,7 @@ class Regression_Tests(GeneralFailsafeTestGroup.GeneralFailsafeTests,
         cls.TIMEOUT=5
         cls.DELAY=1.5
 
-        cls.resource_path = os.path.join(os.path.dirname(\
-            os.path.dirname(ManualOverrideTestGroup.__file__)), 'Resources/')
+        cls.resource_path = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'TestGroupLib/'), 'Resources/')
         
         #start MAVLink, etc
         try:
