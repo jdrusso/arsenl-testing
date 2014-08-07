@@ -12,10 +12,8 @@ from RegressionTestGroup.ArduPlaneTestGroup import GPSFailsafeTestGroup
 from RegressionTestGroup import OverrideTestGroup
 from GenericTest import GenericTests
 
-class Regression_Tests(GenericTests,
-                        GeneralFailsafeTestGroup.GeneralFailsafeTests,
-                        GPSFailsafeTestGroup.GPSFailsafeTests,
-                        ):
+class Regression_ManualOverride_Tests(GenericTests,
+                                      OverrideTestGroup.MANUALOverrideTests):
 
     def __init__(self):
         self.MAX_HEIGHT = 700
@@ -77,4 +75,4 @@ class Regression_Tests(GenericTests,
         wait_seconds(cls.DELAY)
         assert wait_mode(cls.mav, 'AUTO', timeout=3)
 
-signal.signal(signal.SIGINT, Regression_Tests.signal_handler)
+signal.signal(signal.SIGINT, Regression_ManualOverride_Tests.signal_handler)
