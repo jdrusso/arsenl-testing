@@ -123,7 +123,8 @@ def check_overrides(cls, startMode):
     #cls.test_battery_voltage_failsafe,
     test_gps_failsafe,
     test_fence_breach_failsafe,
-    test_heartbeat_failsafe]
+    test_heartbeat_failsafe
+    ]
 
     testResults = {}
 
@@ -139,17 +140,14 @@ def check_overrides(cls, startMode):
             cls.setup(altCheck=False)
             print("GOING UP")
             cls.mavproxy.send('wp set 3\n')
-            testutils.wait_altitude(cls, 950, 1000, timeout=120)
+            testutils.wait_altitude(cls, 1400, 1500, timeout=180)
             print("NOW UP")
             cls.mavproxy.send('mode %s\n' % startMode)
             testutils.check_mode(cls, '%s' % startMode)
             wait_seconds(cls.DELAY)
             cls.mavproxy.send('fence disable\n')
             wait_seconds(cls.DELAY)
-            if test.__name__ == 'test_gps_failsafe':
-                test(cls)
-            else:
-                test(cls, False)
+            test(cls, False)
             wait_seconds(cls.DELAY)
             cls.mavproxy.send('fence disable\n')
             wait_seconds(cls.DELAY)
