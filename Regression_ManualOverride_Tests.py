@@ -24,8 +24,7 @@ class Regression_ManualOverride_Tests(GenericTests,
         self.mavproxy.send('mode AUTO\n')
         wait_seconds(self.DELAY)
         self.mavproxy.send('wp set 2\n')
-        wait_seconds(self.DELAY)        
-        #wait_altitude(self.mav, 380, 1200, timeout=1800)
+        wait_seconds(self.DELAY)
         if altCheck:
             self.mav.recv_match(condition='VFR_HUD.alt>375', blocking=True)
         wait_seconds(self.DELAY)
@@ -75,4 +74,4 @@ class Regression_ManualOverride_Tests(GenericTests,
         wait_seconds(cls.DELAY)
         assert wait_mode(cls.mav, 'AUTO', timeout=3)
 
-signal.signal(signal.SIGINT, Regression_ManualOverride_Tests.signal_handler)
+signal.signal(signal.SIGINT, GenericTests.signal_handler)

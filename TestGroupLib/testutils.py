@@ -66,7 +66,11 @@ def wait_altitude(self, alt_min, alt_max, timeout=90):
         self.mavproxy.send('status VFR_HUD\n')
         wait_seconds(waitDelay)
         self.mavproxy.expect('alt : \d*', timeout=self.TIMEOUT)
-        alt = int(re.match("alt : (\d*)", self.mavproxy.after).group(1))
+        try:
+            alt = int(re.match("alt : (\d*)", self.mavproxy.after).group(1))
+        except ValueError:
+            print ("Could not get current altitude.")
+            return False
         assert alt in range(1, 100000), "Invalid altitude!"
         climb_rate =  alt - previous_alt
         previous_alt = alt

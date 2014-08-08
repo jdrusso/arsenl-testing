@@ -9,16 +9,6 @@ from nose.plugins.attrib import attr
 
 class GeneralFailsafeTests():
 
-    # def test_heartbeat_failsafe(self, checkGPS=True):
-
-    #     self.mavproxy.send('fence disable\n')
-    #     wait_seconds(self.DELAY)
-    #     self.mavproxy.send('set heartbeat 0\n')
-    #     wait_seconds(self.DELAY)
-    #     assert testutils.check_mode(self, 'RTL', 3, delay=21)
-    #     if checkGPS:
-    #         assert testutils.check_GPS(self), "GPS Failsafe test failed."
-
     def test_heartbeat_failsafe(self, checkGPS=True):
 
         self.mavproxy.send('fence disable\n')

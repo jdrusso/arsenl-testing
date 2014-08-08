@@ -12,8 +12,8 @@ class GenericTests():
     @classmethod
     def setup_class(cls):
     	#Set this to False to enable logging.
-    	DEBUG = False
-    	CONSOLE = False
+    	DEBUG = True
+    	CONSOLE = True
 
     	cls.TIMEOUT=5
         cls.DELAY=2

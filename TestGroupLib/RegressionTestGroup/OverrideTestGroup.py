@@ -139,7 +139,7 @@ def check_overrides(cls, startMode):
             cls.setup(altCheck=False)
             print("GOING UP")
             cls.mavproxy.send('wp set 3\n')
-            testutils.wait_altitude(cls, 950, 1000, timeout=90)
+            testutils.wait_altitude(cls, 950, 1000, timeout=120)
             print("NOW UP")
             cls.mavproxy.send('mode %s\n' % startMode)
             testutils.check_mode(cls, '%s' % startMode)
