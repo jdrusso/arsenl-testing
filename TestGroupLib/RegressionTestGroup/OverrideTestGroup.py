@@ -101,12 +101,12 @@ from ArduPlaneTestGroup import GPSFailsafeTestGroup
 
 class FBWAOverrideTests():
 
-    def test_overrides(self):
+    def test_FBWA_overrides(self):
         check_overrides(self, 'FBWA')
 
 class MANUALOverrideTests():
 
-    def test_overrides(self):
+    def test_MANUAL_overrides(self):
         check_overrides(self, 'MANUAL')
 
 def check_overrides(cls, startMode):
