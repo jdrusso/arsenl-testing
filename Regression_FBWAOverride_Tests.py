@@ -23,9 +23,8 @@ class Regression_FBWAOverride_Tests(GenericTests,
         wait_seconds(self.DELAY)
         self.mavproxy.send('mode AUTO\n')
         wait_seconds(self.DELAY)
-        self.mavproxy.send('wp set 2\n')
-        wait_seconds(self.DELAY)        
-        #wait_altitude(self.mav, 380, 1200, timeout=1800)
+        self.mavproxy.send('wp set 3\n')
+        wait_seconds(self.DELAY)
         if altCheck:
             self.mav.recv_match(condition='VFR_HUD.alt>375', blocking=True)
         wait_seconds(self.DELAY)
@@ -41,7 +40,9 @@ class Regression_FBWAOverride_Tests(GenericTests,
         wait_seconds(self.DELAY)
 
         self.mavproxy.send("param load %ssitl.parm\n" % self.resource_path)
-        self.mavproxy.expect('Loaded [0-9]+ parameters')
+        wait_seconds(self.DELAY)
+        self.mavproxy.expect('Loaded [0-9]+ parameters', timeout=self.TIMEOUT)
+        wait_seconds(self.DELAY)
         
         #Fetch list of params
         self.mavproxy.send("param fetch\n")

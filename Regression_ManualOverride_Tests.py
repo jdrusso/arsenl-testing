@@ -23,7 +23,7 @@ class Regression_ManualOverride_Tests(GenericTests,
         wait_seconds(self.DELAY)
         self.mavproxy.send('mode AUTO\n')
         wait_seconds(self.DELAY)
-        self.mavproxy.send('wp set 2\n')
+        self.mavproxy.send('wp set 3\n')
         wait_seconds(self.DELAY)
         if altCheck:
             self.mav.recv_match(condition='VFR_HUD.alt>375', blocking=True)
