@@ -2,7 +2,6 @@ import pexpect, util, re
 from pymavlink import mavutil
 from common import *
 
-#TODO: GPS Failsafe doesn't exist in ArduPlane yet!
 def check_GPS(self):
 
     self.mavproxy.send('param set SIM_GPS_DISABLE 1\n')
@@ -17,7 +16,8 @@ def check_GPS(self):
     assert {0:True, 1:False}[self.mavproxy.expect('chan3_raw : 1000', timeout=self.TIMEOUT)]
     wait_seconds(self.DELAY)
     self.mavproxy.send('param set SIM_GPS_DISABLE 0\n')
-    wait_seconds(4)
+    #Wait to reestablish GPS lock
+    wait_seconds(5)
     return True
 
 def get_old_value(self, paramName):
