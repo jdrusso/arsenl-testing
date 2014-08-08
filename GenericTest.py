@@ -13,7 +13,7 @@ class GenericTests():
     def setup_class(cls):
     	#Set this to False to enable logging.
     	DEBUG = False
-    	CONSOLE = False
+    	CONSOLE = os.getenv('SITL_CONSOLE_ENABLED', False)
 
     	cls.TIMEOUT=5
         cls.DELAY=2
